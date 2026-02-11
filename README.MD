@@ -175,3 +175,194 @@ Used for:
 
 * Control inbound/outbound traffic
 * Subnet-level protection
+
+---
+
+## 📊 5. Monitoring & Observability
+
+### Azure Monitor
+
+* Metrics collection
+* Alerts
+* Performance tracking
+
+### Log Analytics Workspace
+
+* Centralized logging
+* Query logs using KQL
+* Security analytics
+
+### Application Insights
+
+* App performance monitoring
+* Error tracking
+* User telemetry
+* Distributed tracing
+
+---
+
+## 🔄 6. DevOps & CI/CD
+
+### CI/CD Flow
+
+```
+Code → Build → Test → Security Scan → Deploy → Monitor
+```
+
+### GitHub Actions / Azure DevOps
+
+* Automated build & deployment
+* Infrastructure deployment
+* Security scanning
+
+### Infrastructure as Code (IaC)
+
+Use:
+
+* Terraform
+* Bicep
+* ARM templates
+
+### Azure Container Registry (ACR)
+
+* Store Docker images
+* Secure container storage
+* Integrated with AKS
+
+---
+
+# 📊 Optional Data Engineering Stack
+
+If building data pipelines or analytics:
+
+### Azure Data Factory
+
+* ETL/ELT pipelines
+* Data ingestion
+* Workflow orchestration
+
+### Azure Synapse Analytics
+
+* Data warehouse
+* Big data analytics
+* SQL + Spark engine
+
+### Azure Event Hub
+
+* Real-time data streaming
+* Log ingestion
+* IoT telemetry
+
+---
+
+# 📐 Reference Architecture Diagram (Text)
+
+```
+                   ┌────────────────────┐
+                   │   Users / Clients  │
+                   └─────────┬──────────┘
+                             │
+                    Azure Front Door (WAF)
+                             │
+                     API Management Layer
+                             │
+         ┌──────────────Compute Layer──────────────┐
+         │                                         │
+   Azure App Service                        AKS Cluster
+         │                                         │
+         └──────────────┬──────────────────────────┘
+                        │
+                  Azure Functions
+                        │
+        ┌───────────────┴────────────────┐
+        │                                │
+   Azure SQL DB                     Cosmos DB
+        │                                │
+        └──────────────┬─────────────────┘
+                       │
+                Data Lake Storage
+                       │
+            Monitoring + Security Layer
+```
+
+---
+
+# 🔐 Security Best Practices
+
+* Use Managed Identities (avoid hardcoded secrets)
+* Store secrets in Key Vault
+* Enable private endpoints
+* Apply Zero Trust model
+* Enable Defender for Cloud
+* Use RBAC everywhere
+* Enable logging for all services
+
+---
+
+# 📦 Deployment Steps
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/yourusername/azure-architecture
+cd azure-architecture
+```
+
+## 2. Deploy Infrastructure (Terraform example)
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+## 3. Deploy Application
+
+Using GitHub Actions:
+
+* Push code to main branch
+* CI/CD auto deploys to Azure
+
+---
+
+# 📈 Scalability Strategy
+
+* Enable auto-scale for App Services
+* AKS horizontal pod autoscaling
+* Database read replicas
+* CDN caching via Azure Front Door
+* Queue-based load leveling
+
+---
+
+# 💰 Cost Optimization
+
+* Use Azure Cost Management dashboard
+* Auto shutdown dev environments
+* Reserved instances for production
+* Storage lifecycle policies
+* Monitor unused resources
+
+---
+
+# 🧠 Future Enhancements
+
+* Azure OpenAI integration
+* Microsoft Sentinel (SIEM)
+* Zero Trust full implementation
+* Multi-region deployment
+* Chaos engineering testing
+* Advanced threat detection system
+
+---
+
+# 👨‍💻 Author
+
+**Harshvir Singh Tomar**
+Cloud & Cybersecurity Enthusiast
+
+---
+
+# ⭐ Contribute
+
+If this project helps you, consider giving it a star and contributing!
