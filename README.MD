@@ -1,319 +1,177 @@
-🚀 Azure Cloud Architecture – Scalable Enterprise Application
-📌 Overview
+# 🚀 Azure Cloud Architecture – Scalable Enterprise Application
 
-This repository contains the reference architecture for a secure, scalable, and production-ready system built on Microsoft Azure.
+## 📌 Overview
+
+This repository contains the reference architecture for a **secure, scalable, and production-ready system built on Microsoft Azure**.
+
 It is designed for modern applications requiring:
 
-High availability
+* High availability
+* Strong security & compliance
+* Scalable compute and data processing
+* DevOps automation
+* Monitoring and observability
 
-Strong security & compliance
+This architecture can support:
 
-Scalable data processing
+* SaaS platforms
+* Cybersecurity tools
+* Data engineering pipelines
+* AI/ML systems
+* Cloud-native applications
 
-DevOps automation
+---
 
-Observability & monitoring
+# 🏗️ High-Level Architecture
 
-The architecture leverages the Azure cloud stack to support enterprise workloads such as SaaS platforms, data engineering pipelines, cybersecurity tools, or AI-driven systems.
+## 🔁 Request Flow
 
-🏗️ Architecture Overview
-High-Level Flow
+```
 Users → Azure Front Door → API Management → App Services / AKS
       → Azure Functions / Microservices
       → Data Layer (SQL + Storage + Data Lake)
       → Monitoring & Security Layer
-☁️ Core Azure Components
-1. 🌐 Networking Layer
-Azure Virtual Network (VNet)
+```
 
-Isolated private network for all resources
+---
 
-Subnets:
+# ☁️ Core Azure Components
 
-Web Tier
+## 🌐 1. Networking Layer
 
-App Tier
+### Azure Virtual Network (VNet)
 
-Data Tier
+Provides a private and secure network for all Azure resources.
 
-Management subnet
+**Subnets:**
 
-Azure Front Door / Application Gateway
+* Web Tier subnet
+* Application subnet
+* Data subnet
+* Management subnet
 
-Global entry point
+### Azure Front Door
 
-Load balancing
+* Global load balancer
+* SSL termination
+* CDN caching
+* Web Application Firewall (WAF)
 
-SSL termination
+### Azure Application Gateway
 
-WAF (Web Application Firewall)
+* Layer 7 load balancing
+* Internal routing
+* WAF protection
 
-Azure DNS
+### Azure DNS
 
-Domain routing and resolution
+* Domain name routing
+* Public/private DNS zones
 
-2. 🖥️ Compute Layer
-Option A: Azure App Service (PaaS)
+---
 
-Best for:
+## 🖥️ 2. Compute Layer
 
-Web apps
-
-REST APIs
-
-Backend services
-
-Features:
-
-Auto-scaling
-
-Managed runtime
-
-CI/CD integration
-
-Option B: Azure Kubernetes Service (AKS)
+### Option A: Azure App Service (PaaS)
 
 Best for:
 
-Microservices
+* Web applications
+* REST APIs
+* Backend services
 
-Containerized apps
+**Features:**
 
-ML workloads
+* Auto scaling
+* Managed runtime
+* CI/CD integration
+* Low maintenance
 
-Features:
+---
 
-Container orchestration
+### Option B: Azure Kubernetes Service (AKS)
 
-Horizontal scaling
+Best for:
 
-DevOps friendly
+* Microservices architecture
+* Containerized apps
+* ML workloads
+* Scalable backend systems
 
-Azure Functions (Serverless)
+**Features:**
+
+* Container orchestration
+* Horizontal scaling
+* Rolling deployments
+* DevOps friendly
+
+---
+
+### Azure Functions (Serverless)
 
 Used for:
 
-Event-driven tasks
+* Event-driven tasks
+* Automation jobs
+* Background processing
+* Scheduled tasks
 
-Automation
+---
 
-Background jobs
+## 💾 3. Data Layer
 
-Data processing
+### Azure SQL Database
 
-3. 💾 Data Layer
-Azure SQL Database
+* Relational database
+* Transactional workloads
+* High availability
+* Automated backups
 
-Structured relational data
+### Azure Cosmos DB
 
-Transactional systems
+* NoSQL distributed DB
+* Ultra-low latency
+* Global distribution
+* Real-time apps
 
-High availability
+### Azure Data Lake Storage Gen2
 
-Azure Cosmos DB
+* Big data storage
+* Logs & analytics data
+* ML datasets
 
-NoSQL distributed database
+### Azure Blob Storage
 
-Low latency global access
+* Images
+* Files
+* Backups
+* Documents
 
-Ideal for real-time apps
+---
 
-Azure Data Lake Storage Gen2
+## 🔐 4. Security Layer
 
-Big data storage
+### Azure Active Directory (Azure AD)
 
-Logs, analytics, ML datasets
+* Identity & access management
+* Single Sign-On (SSO)
+* Multi-factor authentication
+* Role-based access control (RBAC)
 
-Azure Blob Storage
+### Azure Key Vault
 
-File storage
+* Store secrets securely
+* API keys
+* Certificates
+* Encryption keys
 
-Images, backups, documents
+### Microsoft Defender for Cloud
 
-4. 🔐 Security Layer
-Azure Active Directory (Azure AD)
+* Threat detection
+* Security posture monitoring
+* Vulnerability scanning
 
-Identity & access management
+### Network Security Groups (NSG)
 
-SSO, MFA
-
-RBAC control
-
-Azure Key Vault
-
-Secrets management
-
-API keys
-
-Certificates
-
-Encryption keys
-
-Microsoft Defender for Cloud
-
-Threat detection
-
-Vulnerability assessment
-
-Security recommendations
-
-Network Security Groups (NSG)
-
-Control inbound/outbound traffic
-
-5. 📊 Monitoring & Observability
-Azure Monitor
-
-Metrics and logs
-
-Performance tracking
-
-Log Analytics Workspace
-
-Centralized logging
-
-Query with KQL
-
-Application Insights
-
-App performance monitoring
-
-Error tracking
-
-User telemetry
-
-6. 🔄 DevOps & CI/CD
-Azure DevOps / GitHub Actions
-
-CI/CD pipeline:
-
-Code → Build → Test → Security Scan → Deploy → Monitor
-Infrastructure as Code
-
-Terraform or Bicep
-
-ARM templates
-
-Container Registry
-
-Azure Container Registry (ACR)
-
-Stores Docker images
-
-🔁 Data Engineering Extension (Optional)
-
-If building data pipelines:
-
-Azure Data Factory
-
-ETL pipelines
-
-Data movement
-
-Azure Synapse Analytics
-
-Data warehouse
-
-Big data analytics
-
-Event Hub
-
-Streaming data ingestion
-
-Real-time processing
-
-📐 Reference Architecture Diagram (Text)
-                   ┌────────────────────┐
-                   │   Users / Clients  │
-                   └─────────┬──────────┘
-                             │
-                   Azure Front Door / WAF
-                             │
-                    API Management Layer
-                             │
-         ┌───────────────Compute Layer────────────────┐
-         │                                             │
-   Azure App Service                          Azure AKS Cluster
-         │                                             │
-         └───────────────┬─────────────────────────────┘
-                         │
-                  Azure Functions
-                         │
-        ┌────────────────┴────────────────┐
-        │                                 │
-   Azure SQL DB                    Cosmos DB
-        │                                 │
-        └──────────────┬──────────────────┘
-                       │
-                Data Lake Storage
-                       │
-             Monitoring & Security
-🔐 Security Best Practices
-
-Use Managed Identities (avoid hardcoded secrets)
-
-Store secrets in Key Vault
-
-Enable private endpoints
-
-Apply Zero Trust model
-
-Enable Defender for Cloud
-
-Use RBAC everywhere
-
-📦 Deployment Steps
-1. Clone Repo
-git clone https://github.com/yourusername/azure-architecture
-cd azure-architecture
-2. Setup Infrastructure
-
-Using Terraform:
-
-terraform init
-terraform plan
-terraform apply
-3. Deploy Application
-
-Using GitHub Actions:
-
-Push code to main branch
-
-CI/CD pipeline auto deploys to Azure
-
-📊 Scalability Strategy
-
-Auto-scale App Services
-
-AKS horizontal pod autoscaling
-
-Read replicas for database
-
-CDN caching via Azure Front Door
-
-💰 Cost Optimization
-
-Use Azure Cost Management
-
-Auto shutdown dev environments
-
-Use reserved instances
-
-Storage lifecycle policies
-
-🧠 Future Enhancements
-
-AI integration using Azure OpenAI
-
-SIEM with Microsoft Sentinel
-
-Zero Trust security model
-
-Multi-region deployment
-
-Chaos engineering testing
-
-👨‍💻 Author
-
-Harshvir Singh Tomar
-Cloud & Cybersecurity Enthusiast
+* Control inbound/outbound traffic
+* Subnet-level protection
